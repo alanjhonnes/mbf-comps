@@ -1,0 +1,6 @@
+<span class="sf-show-hide__icon"
+      *ngIf="show; else hide">SHOW</span>
+
+<ng-template #hide>
+  <span class="sf-show-hide__icon">HIDE</span>
+</ng-template>

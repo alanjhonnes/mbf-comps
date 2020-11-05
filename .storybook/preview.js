@@ -85,7 +85,7 @@ addParameters({
         type: 'tablet',
       },
     },
-    defaultViewport: 'desktopMD',
+    defaultViewport: 'iphone678',
   },
   backgrounds: {
     default: 'white',
