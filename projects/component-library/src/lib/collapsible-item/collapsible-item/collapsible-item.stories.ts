@@ -9,17 +9,13 @@ storiesOf('CollapsibleItem', module)
         imports: [CollapsibleItemModule],
       },
       props: {
-        open: boolean(
-          'open',
-          true,
-        ),
-
+        open: boolean('open', false),
       },
 
       template: `
         <sf-collapsible-item header="Titulo"
-                             [(open)]="open">
-          Conteúdo
+          [(open)]="open">
+          Conteúdo...
         </sf-collapsible-item>
       `,
     };
@@ -30,16 +26,13 @@ storiesOf('CollapsibleItem', module)
         imports: [CollapsibleItemModule],
       },
       props: {
-        open: boolean(
-          'open',
-          true,
-        ),
+        open: boolean('open', true),
       },
       template: `
         <sf-collapsible-item header="Titulo"
-                             [(open)]="open"
-                             [headerTemplate]="headerTemplate">
-          Conteúdo
+          [(open)]="open"
+          [headerTemplate]="headerTemplate">
+          Conteúdo...
         </sf-collapsible-item>
 
         <ng-template #headerTemplate let-header>
@@ -47,5 +40,4 @@ storiesOf('CollapsibleItem', module)
         </ng-template>
       `,
     };
-  })
-  ;
+  });

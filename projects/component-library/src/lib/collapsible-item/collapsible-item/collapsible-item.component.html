@@ -1,9 +1,10 @@
 <p>
-  <ng-container *ngTemplateOutlet="headerTemplate || defaultTemplate;
-  context: { $implicit: header }"></ng-container>
-  - {{open}}
+  <ng-container *ngTemplateOutlet="headerTemplate || defaultTemplate; context: { $implicit: header }"></ng-container>
+  <span [ngClass]="{'down-arrow': open, 'up-arrow': !open}"></span>
 </p>
-<ng-content></ng-content>
 
-<ng-template #defaultTemplate
-             let-header>{{header}}</ng-template>
+<div [@fade]="'in'">
+  <ng-content *ngIf="open"></ng-content>
+</div>
+
+<ng-template #defaultTemplate let-header>{{header}}</ng-template>

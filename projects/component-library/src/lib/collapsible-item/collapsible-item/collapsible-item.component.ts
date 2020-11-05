@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'sf-collapsible-item',
@@ -8,9 +16,8 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, T
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollapsibleItemComponent implements OnInit {
-
   @Input()
-  header: string = 'header';
+  header = 'header';
 
   @Input()
   headerTemplate: TemplateRef<{ $implicit: string }> | undefined;
@@ -18,9 +25,12 @@ export class CollapsibleItemComponent implements OnInit {
   @Input()
   open = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  @HostListener('click')
+  onClick(): void {
+    this.open = !this.open;
   }
-
 }
