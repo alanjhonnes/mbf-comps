@@ -1,0 +1,43 @@
+{
+    "branches": [
+        "master",
+        {
+            "name": "develop",
+            "prerelease": "alpha"
+        },
+        {
+            "name": "next",
+            "prerelease": "beta"
+        },
+        {
+            "name": "staging",
+            "prerelease": "rc"
+        }
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "CHANGELOG.md"
+            }
+        ],
+        [
+            "@semantic-release/npm",
+            {
+                "pkgRoot": "./dist/component-library"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "package.json",
+                    "CHANGELOG.md"
+                ],
+                "message": "chore: publicação de pacote ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ]
+    ]
+}

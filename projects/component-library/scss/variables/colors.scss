@@ -1,0 +1,101 @@
+/// function/primary/positive
+$color-fuprpo: #005db6;
+/// function/primary/alternative
+$color-fupral: #229bff;
+/// function/primary/negative
+$color-fuprne: #ffffff;
+/// function/secondary/1
+$color-fuse1: #000000;
+/// function/secondary/2
+$color-fuse2: #787878;
+/// function/correct
+$color-fuco: #46b266;
+/// function/error
+$color-fuer: #ff6e42;
+/// function/alert
+$color-fual: #f0a200;
+/// function/disable
+$color-fudi: #999999;
+/// function/background/1
+$color-fuba1: #f2f2f2;
+/// function/background/2
+$color-fuba2: #e2e2e2;
+/// label/title_subtitle
+$color-latisu: #000000;
+/// label/text
+$color-late: #787878;
+/// label/text_2
+$color-late2: #6d6d6d;
+/// label/text_disable
+$color-latedi: #e2e2e2;
+$color-transparent: rgba(0, 0, 0, 0);
+$color-black: #000000;
+$color-white: #FFFFFF;
+
+
+// ALIASES
+
+/// function/primary/positive
+$color-function-primary-positive: $color-fuprpo;
+/// function/primary/alternative
+$color-function-primary-alternative: $color-fupral;
+/// function/primary/negative
+$color-function-primary-negative: $color-fuprne;
+/// function/secondary/1
+$color-function-secondary-1: $color-fuse1;
+/// function/secondary/2
+$color-function-secondary-2: $color-fuse2;
+/// function/correct
+$color-function-correct: $color-fuco;
+/// function/error
+$color-function-error: $color-fuer;
+/// function/alert
+$color-function-alert: $color-fual;
+/// function/disable
+$color-function-disable: $color-fudi;
+/// function/background/1
+$color-function-background-1: $color-fuba1;
+/// function/background/2
+$color-function-background-2: $color-fuba2;
+/// label/title_subtitle
+$color-label-title_subtitle: $color-latisu;
+/// label/text
+$color-label-text: $color-late;
+/// label/text_2
+$color-label-text_2: $color-late2;
+/// label/text_disable
+$color-label-text_disable: $color-latedi;
+
+$colors: (fuprpo: #005db6,
+  /// function/primary/alternative
+  fupral: #229bff,
+  /// function/primary/negative
+  fuprne: #ffffff,
+  /// function/secondary/1
+  fuse1: #000000,
+  /// function/secondary/2
+  fuse2: #787878,
+  /// function/correct
+  fuco: #46b266,
+  /// function/error
+  fuer: #ff6e42,
+  /// function/alert
+  fual: #f0a200,
+  /// function/disable
+  fudi: #999999,
+  /// function/background/1
+  fuba1: #f2f2f2,
+  /// function/background/2
+  fuba2: #e2e2e2,
+  /// label/title_subtitle
+  latisu: #000000,
+  /// label/text
+  late: #787878,
+  /// label/text_2
+  late2: #6d6d6d,
+  /// label/text_disable
+  latedi: #e2e2e2,
+  transparent: rgba(0, 0, 0, 0),
+  black: #000000,
+  white: #FFFFFF,
+)

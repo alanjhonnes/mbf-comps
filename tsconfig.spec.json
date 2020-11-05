@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "../../out-tsc/spec",
+    "types": [
+      "jest"
+    ]
+  },
+  "files": [],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ],
+  "allowJs": false
+}

@@ -1,0 +1,20 @@
+{
+  "extends": "../projects/component-library/tsconfig.lib.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "hammerjs"
+    ]
+  },
+  "exclude": [
+    "../src/test.ts",
+    "../src/**/*.spec.ts",
+    "../projects/**/*.spec.ts"
+  ],
+  "include": [
+    "../projects/component-library/**/*"
+  ],
+  "files": [
+    "./typings.d.ts"
+  ]
+}

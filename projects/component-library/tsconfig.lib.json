@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "target": "es2015",
+    "declaration": true,
+    "inlineSources": true,
+    "types": [
+      "hammerjs"
+    ],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "experimentalDecorators": true
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
+    "enableIvy": true,
+    "disableTypeScriptVersionCheck": true
+  },
+  "exclude": [
+    "src/test.ts",
+    "**/*.spec.ts",
+    "**/*.stories.ts"
+  ]
+}

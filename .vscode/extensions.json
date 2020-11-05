@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "oderwat.indent-rainbow",
+    "visualstudioexptteam.vscodeintellicode",
+    "vscode-icons-team.vscode-icons",
+    "angular.ng-template",
+    "cyrilletuzi.angular-schematics",
+    "coenraads.bracket-pair-colorizer",
+    "mrmlnc.vscode-scss"
+  ]
+}

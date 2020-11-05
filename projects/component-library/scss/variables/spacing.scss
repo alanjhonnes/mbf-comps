@@ -1,0 +1,10 @@
+$spacer: 1rem !default;
+$spacers: (none: 0,
+  xxs: $spacer / 8,
+  xs: $spacer / 4,
+  sm: $spacer / 2,
+  md: $spacer * 1,
+  lg: $spacer * 1.5,
+  xl: $spacer * 2,
+  xxl: $spacer * 3,
+) !default;
