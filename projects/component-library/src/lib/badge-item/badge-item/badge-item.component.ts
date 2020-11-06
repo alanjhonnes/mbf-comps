@@ -10,13 +10,13 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'sf-bagde-item',
-  templateUrl: './bagde-item.component.html',
-  styleUrls: ['./bagde-item.component.scss'],
+  selector: 'sf-badge-item',
+  templateUrl: './badge-item.component.html',
+  styleUrls: ['./badge-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BagdeItemComponent implements OnInit {
+export class BadgeItemComponent implements OnInit {
   @Input()
   text: string;
 
