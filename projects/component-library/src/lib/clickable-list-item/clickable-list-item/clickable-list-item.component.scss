@@ -1,0 +1,21 @@
+.sf-clickable-list-item {
+  &__container {
+    display: inline-block;
+    width: 60%;
+    padding: 3%;
+    height: 70px;
+    border-left: solid 3px #002858;
+    background: #FFFFFF;
+  }
+
+  &__text {
+    float: left;
+    font-family: Montserrat;
+    font-size: 16px;
+    color: #7D7D7D;
+  }
+
+  &__arrow-right {
+    float: right;
+  }
+}
