@@ -1,0 +1,10 @@
+<div class="card-container">
+    <p class="card-container__info">{{texto}}</p>
+    <h2 class="card-container__titulo">{{titulo}}</h2>
+    <ul class="card-container__list">
+        <li class="card-container__listItem" *ngFor="let pendencia of pendencias">
+            {{pendencia}}
+        </li>
+    </ul>
+    <ng-content></ng-content>
+</div>
