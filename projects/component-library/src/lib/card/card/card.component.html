@@ -1,0 +1,17 @@
+<span class="sf-card" *ngIf="cardSelect; else default"></span>
+
+<ng-template #default>
+    <span class="sf-card">
+        <div class="sf-card__left">
+            <span class="sf-card__left__icon">escudo</span>
+            <span class="sf-card__left__numero">{{numero}}</span>
+            <span class="sf-card__left__titular">{{titular}}</span>
+        </div>
+        <div class="sf-card__right">
+            <span class="sf-card__right__logo">Safra</span>
+            <span class="sf-card__right__bandeira">Visa</span>
+        </div>
+    </span>
+    <div class="sf-card__shadow">
+    </div>
+</ng-template>

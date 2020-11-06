@@ -1,0 +1,76 @@
+.sf-card {
+  display: flex;
+  flex-direction: row;
+  width: 230px;
+  height: 140px;
+  background: linear-gradient(
+    144.96deg,
+    #aaaaaa 5.62%,
+    #aaaaaa 38.11%,
+    #333333 94.73%
+  );
+  z-index: 1;
+  border-radius: 8px;
+  &__left {
+    display: flex;
+    flex-direction: column;
+
+    &__icon {
+      color: white;
+      margin-left: 77px;
+      margin-top: 15px;
+    }
+
+    &__numero {
+      color: white;
+      margin-top: 47px;
+      padding-left: 10px;
+      font-size: 14px;
+    }
+
+    &__titular {
+      text-transform: uppercase;
+      color: white;
+      width: 170px;
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+
+    &__logo {
+      height: 24px;
+      width: 60px;
+      color: gray;
+      text-align: center;
+      font-family: unset;
+      font-weight: 900;
+      background: linear-gradient(90deg, #eaeaea 0%, #bfbfbf 100%);
+    }
+
+    &__bandeira {
+      color: white;
+      margin-top: 51px;
+    }
+  }
+
+  &__shadow {
+    background: linear-gradient(
+      144.96deg,
+      #aaaaaa 5.62%,
+      #aaaaaa 38.11%,
+      #333333 94.73%
+    );
+    width: 24px;
+    height: 124px;
+    left: 238px;
+    position: absolute;
+    top: 23px;
+    border-radius: 8px;
+    z-index: -1;
+  }
+}
