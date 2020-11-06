@@ -2,7 +2,7 @@
   display: block;
 }
 
-.down-arrow:before {
+.down-arrow {
   content: "";
   //display: inline-block;
   vertical-align: middle;
@@ -16,7 +16,7 @@
   border-top: 5px solid rgb(212, 187, 75);
 }
 
-.up-arrow:before {
+.up-arrow {
   content: "";
   //display: inline-block;
   vertical-align: middle;
@@ -28,4 +28,15 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid rgb(212, 187, 75);
+}
+
+div {
+  left: 9.42%;
+  right: 9.42%;
+  top: 15.99%;
+  bottom: 77.34%;
+
+  background: #FFFFFF;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
 }

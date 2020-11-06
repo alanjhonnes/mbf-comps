@@ -15,7 +15,7 @@ storiesOf('CollapsibleItem', module)
       template: `
         <sf-collapsible-item header="Titulo"
           [(open)]="open">
-          Conteúdo...
+          Conteudo..
         </sf-collapsible-item>
       `,
     };
