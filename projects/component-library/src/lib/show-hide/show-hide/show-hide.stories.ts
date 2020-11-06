@@ -9,11 +9,7 @@ storiesOf('ShowHide', module)
         imports: [ShowHideModule],
       },
       props: {
-        show: boolean(
-          'show',
-          true,
-        ),
-
+        show: boolean('show', true),
       },
 
       template: `
@@ -23,17 +19,13 @@ storiesOf('ShowHide', module)
     };
   })
 
-
   .add('With content', () => {
     return {
       moduleMetadata: {
         imports: [ShowHideModule],
       },
       props: {
-        show: boolean(
-          'show',
-          true,
-        ),
+        show: boolean('show', true),
       },
       template: `
         <sf-show-hide
@@ -43,5 +35,4 @@ storiesOf('ShowHide', module)
         <div *ngIf="show">CONTENT</div>
       `,
     };
-  })
-  ;
+  });
