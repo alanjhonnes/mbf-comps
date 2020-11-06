@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.circle {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+  background: linear-gradient(180deg, #A73B5C 0%, #6D0017 100%);
+  left: 80.95%;
+  right: 9.52%;
+  top: 22.84%;
+  bottom: 69.04%;
+}
+
+.container {
+  background: linear-gradient(90deg, #EDEDED 0%, #FBFBFB 98.1%);
+  border: 1px solid #DBDBDB;
+  border-radius: 4px;
+}
+
+.text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1A1A1A;
+}

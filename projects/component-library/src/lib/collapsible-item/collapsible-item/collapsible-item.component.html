@@ -1,0 +1,9 @@
+<p>
+  <ng-container *ngTemplateOutlet="headerTemplate || defaultTemplate;
+  context: { $implicit: header }"></ng-container>
+  - {{open}}
+</p>
+<ng-content></ng-content>
+
+<ng-template #defaultTemplate
+             let-header>{{header}}</ng-template>
