@@ -1,8 +1,7 @@
 import { storiesOf } from '@storybook/angular';
 import { text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { CardModule } from '../card.module';
-import { CardComponent } from './card.component';
+import { CardModule } from '../card-visualization.module';
+import { CardVisualizationComponent } from './card-visualization.component';
 
 storiesOf('Card', module)
     .add('Simple card example', () => {
@@ -11,21 +10,21 @@ storiesOf('Card', module)
                 imports: [CardModule],
             },
             props: {
-                numero: text(
+                cardNumber: text(
                     'Número',
                     '**** **** **** ****',
                 ),
-                titular: text(
+                holderName: text(
                     'Titular',
                     'titular',
                 ),
             },
 
             template: `
-        <sf-card
-        [numero]="numero"
-        [titular]="titular">
-        </sf-card>
+        <sf-card-visualization
+        [cardNumber]="cardNumber"
+        [holderName]="holderName">
+        </sf-card-visualization>
       `,
         };
     })

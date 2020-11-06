@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'sf-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  selector: 'sf-card-visualization',
+  templateUrl: './card-visualization.component.html',
+  styleUrls: ['./card-visualization.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent implements OnInit {
+export class CardVisualizationComponent implements OnInit {
 
   @Input()
-  titular: string;
+  holderName: string;
 
   @Input()
-  cardSelect: true;
+  default: true;
 
   @Input()
-  numero: string;
+  cardNumber: string;
 
-  @HostBinding('class.sf-card')
+  @HostBinding('class.sf-card-visualization')
   readonly defaultClass = true;
 
   constructor() { }
