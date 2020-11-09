@@ -7,13 +7,11 @@ storiesOf('BottomSheet', module).add('Default settings', () => {
     moduleMetadata: {
       imports: [BottomSheetModule],
     },
-    props: {
-      cancelOperation: action('cancelOperation'),
-    },
-
+    props: {},
     template: `
-      <sf-bottom-sheet texto="Tudo certo?" (click)="cancelOperation($event)">
-        Botao - Usar Foto / Botao - Cancelar
-      </sf-bottom-sheet>`,
+      <sf-bottom-sheet >
+         <span>Tudo certo ?</span>
+      </sf-bottom-sheet>
+      `,
   };
 });

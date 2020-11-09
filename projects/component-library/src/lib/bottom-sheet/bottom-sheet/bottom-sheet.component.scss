@@ -1,21 +1,27 @@
 .sf-bottom-sheet {
   display: block;
 
-  &__container {
-    left: 9.42%;
-    right: 9.42%;
-    top: 15.99%;
-    bottom: 77.34%;
-
-    background: #FFFFFF;
-    border-radius: 20px 20px 0px 0px;
-  }
-
   &__inline {
     display: flex;
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
+  }
+
+  &__center {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__container {
+    background-color: #FFFFFF;
+    border-radius: 20px 20px 0px 0px;
+    max-height: 100% !important;
+
+    &__modal-content {
+      width: 60%;
+      margin: 0px auto
+    }
   }
 
 }

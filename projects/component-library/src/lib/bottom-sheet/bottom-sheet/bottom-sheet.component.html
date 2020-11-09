@@ -1,14 +1,9 @@
-<button (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-  {{isOpen ? "Close" : "Open"}}
-</button>
+<button (click)="open(template)">Open</button>
 
-<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+<ng-template #template>
   <div class="sf-bottom-sheet__container">
-    <div class="sf-bottom-sheet__inline">
-      <p>{{ texto }}</p>
-      <p (click)="onClickClose()">X</p>
+    <div class="sf-bottom-sheet__container__modal-content sf-bottom-sheet__center">
+      <ng-content></ng-content>
     </div>
-
-    <ng-content></ng-content>
   </div>
 </ng-template>

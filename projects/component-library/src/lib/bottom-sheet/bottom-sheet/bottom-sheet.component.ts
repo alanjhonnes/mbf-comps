@@ -1,12 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatBottomSheet } from './bottom-sheet';
+import { MatBottomSheetRef } from './bottom-sheet-ref';
 
 @Component({
   selector: 'sf-bottom-sheet',
@@ -16,19 +16,18 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit {
-  isOpen = false;
+  constructor(private _bottomSheet: MatBottomSheet) {}
 
-  @Input()
-  texto = '';
-
-  @Output()
-  cancelOperation = new EventEmitter<boolean>();
-
-  constructor() {}
+  bottomSheet: MatBottomSheetRef;
 
   ngOnInit(): void {}
 
-  onClickClose(): void {
-    this.cancelOperation.emit(true);
+  open(template: TemplateRef<any>): void {
+    this.bottomSheet = this._bottomSheet.open(template);
+  }
+
+  clicked(): void {
+    console.log('close');
+    this.bottomSheet.dismiss();
   }
 }
