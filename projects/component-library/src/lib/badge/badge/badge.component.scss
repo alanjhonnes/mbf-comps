@@ -1,0 +1,14 @@
+.sf-badge {
+  &__circle {
+    font-family: Montserrat;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #A73B5C 0%, #6D0017 100%);
+  }
+}
