@@ -5,7 +5,7 @@
   padding: 17px;
   margin: 0 auto;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #fff;
   box-shadow: 0px 7px 0px 0px rgba(153, 46, 72, 1);
 
   &__info {
@@ -18,7 +18,7 @@
 
   &__listItem {
     list-style: none;
-    background: #f9f9f9;
+    background: linear-gradient(90deg, #ededed 0%, #fbfbfb 98.1%);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #d9d9d9;
