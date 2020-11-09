@@ -3,10 +3,8 @@ import {
   Component,
   EventEmitter,
   HostListener,
-  Input,
   OnInit,
   Output,
-  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -18,12 +16,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClickableListItemComponent implements OnInit {
-  @Input()
-  content: string;
-
-  @Input()
-  contentTemplate: TemplateRef<{ $implicit: string }> | undefined;
-
   @Output()
   clicked = new EventEmitter<boolean>();
 

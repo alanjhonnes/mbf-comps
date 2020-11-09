@@ -1,10 +1,4 @@
-  <div class="sf-clickable-list-item__container">
-    <ng-container *ngTemplateOutlet="contentTemplate || defaultTemplate;
-    context: { $implicit: content }"></ng-container>
+  <div class="sf-clickable-list-item">
+    <ng-content></ng-content>
+    <span class="sf-clickable-list-item__arrow-right">&#10093;</span>
   </div>
-  <ng-content></ng-content>
-
-  <ng-template #defaultTemplate let-content>
-    <p class="sf-clickable-list-item__text">{{ content }}</p>
-    <p class="sf-clickable-list-item__text sf-clickable-list-item__arrow-right">&#10093;</p>
-  </ng-template>
