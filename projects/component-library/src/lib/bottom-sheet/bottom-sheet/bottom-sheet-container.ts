@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
 import {
   Component,
   ComponentRef,
@@ -35,12 +27,6 @@ import { Subscription } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 
-// TODO(crisbeto): consolidate some logic between this, MatDialog and MatSnackBar
-
-/**
- * Internal component that wraps user-provided bottom sheet content.
- * @docs-private
- */
 @Component({
   selector: 'mat-bottom-sheet-container',
   templateUrl: 'bottom-sheet-container.html',
@@ -63,25 +49,18 @@ export class SfBottomSheetContainer extends BasePortalOutlet
   implements OnDestroy {
   private _breakpointSubscription: Subscription;
 
-  /** The portal outlet inside of this container into which the content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
-  /** The state of the bottom sheet animations. */
   _animationState: 'void' | 'visible' | 'hidden' = 'void';
 
-  /** Emits whenever the state of the animation changes. */
   _animationStateChanged = new EventEmitter<AnimationEvent>();
 
-  /** The class that traps and manages focus within the bottom sheet. */
   private _focusTrap: FocusTrap;
 
-  /** Element that was focused before the bottom sheet was opened. */
   private _elementFocusedBeforeOpened: HTMLElement | null = null;
 
-  /** Server-side rendering-compatible reference to the global document object. */
   private _document: Document;
 
-  /** Whether the component has been destroyed. */
   private _destroyed: boolean;
 
   constructor(
@@ -90,7 +69,6 @@ export class SfBottomSheetContainer extends BasePortalOutlet
     private _focusTrapFactory: FocusTrapFactory,
     breakpointObserver: BreakpointObserver,
     @Optional() @Inject(DOCUMENT) document: any,
-    /** The bottom sheet configuration. */
     public bottomSheetConfig: SfBottomSheetConfig,
   ) {
     super();
@@ -114,32 +92,24 @@ export class SfBottomSheetContainer extends BasePortalOutlet
       });
   }
 
-  /** Attach a component portal as content to this bottom sheet container. */
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
     this._setPanelClass();
     this._savePreviouslyFocusedElement();
     return this._portalOutlet.attachComponentPortal(portal);
   }
 
-  /** Attach a template portal as content to this bottom sheet container. */
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
     this._setPanelClass();
     this._savePreviouslyFocusedElement();
     return this._portalOutlet.attachTemplatePortal(portal);
   }
 
-  /**
-   * Attaches a DOM portal to the bottom sheet container.
-   * @deprecated To be turned into a method.
-   * @breaking-change 10.0.0
-   */
   attachDomPortal = (portal: DomPortal) => {
     this._setPanelClass();
     this._savePreviouslyFocusedElement();
     return this._portalOutlet.attachDomPortal(portal);
   };
 
-  /** Begin animation of bottom sheet entrance into view. */
   enter(): void {
     if (!this._destroyed) {
       this._animationState = 'visible';
@@ -147,7 +117,6 @@ export class SfBottomSheetContainer extends BasePortalOutlet
     }
   }
 
-  /** Begin animation of the bottom sheet exiting from view. */
   exit(): void {
     if (!this._destroyed) {
       this._animationState = 'hidden';
@@ -184,14 +153,12 @@ export class SfBottomSheetContainer extends BasePortalOutlet
     const panelClass = this.bottomSheetConfig.panelClass;
 
     if (Array.isArray(panelClass)) {
-      // Note that we can't use a spread here, because IE doesn't support multiple arguments.
       panelClass.forEach((cssClass) => element.classList.add(cssClass));
     } else if (panelClass) {
       element.classList.add(panelClass);
     }
   }
 
-  /** Moves the focus inside the focus trap. */
   private _trapFocus() {
     const element = this._elementRef.nativeElement;
 
@@ -204,22 +171,15 @@ export class SfBottomSheetContainer extends BasePortalOutlet
     } else {
       const activeElement = this._document.activeElement;
 
-      // Otherwise ensure that focus is on the container. It's possible that a different
-      // component tried to move focus while the open animation was running. See:
-      // https://github.com/angular/components/issues/16215. Note that we only want to do this
-      // if the focus isn't inside the bottom sheet already, because it's possible that the
-      // consumer turned off `autoFocus` in order to move focus themselves.
       if (activeElement !== element && !element.contains(activeElement)) {
         element.focus();
       }
     }
   }
 
-  /** Restores focus to the element that was focused before the bottom sheet was opened. */
   private _restoreFocus() {
     const toFocus = this._elementFocusedBeforeOpened;
 
-    // We need the extra check, because IE can set the `activeElement` to null in some cases.
     if (
       this.bottomSheetConfig.restoreFocus &&
       toFocus &&
@@ -228,10 +188,6 @@ export class SfBottomSheetContainer extends BasePortalOutlet
       const activeElement = this._document.activeElement;
       const element = this._elementRef.nativeElement;
 
-      // Make sure that focus is still inside the bottom sheet or is on the body (usually because a
-      // non-focusable element like the backdrop was clicked) before moving it. It's possible that
-      // the consumer moved it themselves before the animation was done, in which case we shouldn't
-      // do anything.
       if (
         !activeElement ||
         activeElement === this._document.body ||
@@ -247,12 +203,10 @@ export class SfBottomSheetContainer extends BasePortalOutlet
     }
   }
 
-  /** Saves a reference to the element that was focused before the bottom sheet was opened. */
   private _savePreviouslyFocusedElement() {
     this._elementFocusedBeforeOpened = this._document
       .activeElement as HTMLElement;
 
-    // The `focus` method isn't available during server-side rendering.
     if (this._elementRef.nativeElement.focus) {
       Promise.resolve().then(() => this._elementRef.nativeElement.focus());
     }
