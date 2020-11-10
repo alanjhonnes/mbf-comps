@@ -29,8 +29,8 @@ import {
   DomPortal,
 } from '@angular/cdk/portal';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatBottomSheetConfig } from './bottom-sheet-config';
-import { matBottomSheetAnimations } from './bottom-sheet-animations';
+import { SfBottomSheetConfig } from './bottom-sheet-config';
+import { sfBottomSheetAnimations } from './bottom-sheet-animations';
 import { Subscription } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
@@ -47,7 +47,7 @@ import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
   styleUrls: ['bottom-sheet-container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [matBottomSheetAnimations.bottomSheetState],
+  animations: [sfBottomSheetAnimations.bottomSheetState],
   host: {
     class: 'mat-bottom-sheet-container',
     tabindex: '-1',
@@ -59,7 +59,7 @@ import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
     '(@state.done)': '_onAnimationDone($event)',
   },
 })
-export class MatBottomSheetContainer extends BasePortalOutlet
+export class SfBottomSheetContainer extends BasePortalOutlet
   implements OnDestroy {
   private _breakpointSubscription: Subscription;
 
@@ -91,7 +91,7 @@ export class MatBottomSheetContainer extends BasePortalOutlet
     breakpointObserver: BreakpointObserver,
     @Optional() @Inject(DOCUMENT) document: any,
     /** The bottom sheet configuration. */
-    public bottomSheetConfig: MatBottomSheetConfig,
+    public bottomSheetConfig: SfBottomSheetConfig,
   ) {
     super();
 

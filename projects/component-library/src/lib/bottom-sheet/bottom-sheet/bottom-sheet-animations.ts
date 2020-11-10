@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 import { AnimationCurves, AnimationDurations } from '@angular/material/core';
 
-export const matBottomSheetAnimations: {
+export const sfBottomSheetAnimations: {
   readonly bottomSheetState: AnimationTriggerMetadata;
 } = {
   bottomSheetState: trigger('state', [

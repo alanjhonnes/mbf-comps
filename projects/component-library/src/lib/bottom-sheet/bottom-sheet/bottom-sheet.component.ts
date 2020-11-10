@@ -5,8 +5,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { MatBottomSheet } from './bottom-sheet';
-import { MatBottomSheetRef } from './bottom-sheet-ref';
+import { SfBottomSheet } from './bottom-sheet';
+import { SfBottomSheetRef } from './bottom-sheet-ref';
 
 @Component({
   selector: 'sf-bottom-sheet',
@@ -16,18 +16,13 @@ import { MatBottomSheetRef } from './bottom-sheet-ref';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit {
-  constructor(private _bottomSheet: MatBottomSheet) {}
+  constructor(private _sfBottomSheet: SfBottomSheet) {}
 
-  bottomSheet: MatBottomSheetRef;
+  bottomSheet: SfBottomSheetRef;
 
   ngOnInit(): void {}
 
   open(template: TemplateRef<any>): void {
-    this.bottomSheet = this._bottomSheet.open(template);
-  }
-
-  clicked(): void {
-    console.log('close');
-    this.bottomSheet.dismiss();
+    this.bottomSheet = this._sfBottomSheet.open(template);
   }
 }
