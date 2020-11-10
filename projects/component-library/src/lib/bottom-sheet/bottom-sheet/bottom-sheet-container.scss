@@ -7,7 +7,7 @@ $_mat-bottom-sheet-width-increment: 64px;
 $mat-bottom-sheet-container-vertical-padding: 8px !default;
 $mat-bottom-sheet-container-horizontal-padding: 16px !default;
 
-.mat-bottom-sheet-container {
+.sf-bottom-sheet-container {
   //padding: $mat-bottom-sheet-container-vertical-padding $mat-bottom-sheet-container-horizontal-padding;
   min-width: 100vw;
   box-sizing: border-box;
@@ -27,19 +27,19 @@ $mat-bottom-sheet-container-horizontal-padding: 16px !default;
   border-top-right-radius: 4px;
 }
 
-.mat-bottom-sheet-container-medium {
+.sf-bottom-sheet-container-medium {
   @extend %_mat-bottom-sheet-container-border-radius;
   min-width: $_mat-bottom-sheet-width-increment * 6;
   max-width: calc(100vw - #{$_mat-bottom-sheet-width-increment * 2});
 }
 
-.mat-bottom-sheet-container-large {
+.sf-bottom-sheet-container-large {
   @extend %_mat-bottom-sheet-container-border-radius;
   min-width: $_mat-bottom-sheet-width-increment * 8;
   max-width: calc(100vw - #{$_mat-bottom-sheet-width-increment * 4});
 }
 
-.mat-bottom-sheet-container-xlarge {
+.sf-bottom-sheet-container-xlarge {
   @extend %_mat-bottom-sheet-container-border-radius;
   min-width: $_mat-bottom-sheet-width-increment * 9;
   max-width: calc(100vw - #{$_mat-bottom-sheet-width-increment * 6});

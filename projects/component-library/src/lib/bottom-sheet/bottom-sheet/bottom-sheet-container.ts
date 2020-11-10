@@ -28,14 +28,14 @@ import { DOCUMENT } from '@angular/common';
 import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 
 @Component({
-  selector: 'mat-bottom-sheet-container',
+  selector: 'sf-bottom-sheet-container',
   templateUrl: 'bottom-sheet-container.html',
   styleUrls: ['bottom-sheet-container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [sfBottomSheetAnimations.bottomSheetState],
   host: {
-    class: 'mat-bottom-sheet-container',
+    class: 'sf-bottom-sheet-container',
     tabindex: '-1',
     role: 'dialog',
     'aria-modal': 'true',
@@ -78,15 +78,15 @@ export class SfBottomSheetContainer extends BasePortalOutlet
       .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
       .subscribe(() => {
         this._toggleClass(
-          'mat-bottom-sheet-container-medium',
+          'sf-bottom-sheet-container-medium',
           breakpointObserver.isMatched(Breakpoints.Medium),
         );
         this._toggleClass(
-          'mat-bottom-sheet-container-large',
+          'sf-bottom-sheet-container-large',
           breakpointObserver.isMatched(Breakpoints.Large),
         );
         this._toggleClass(
-          'mat-bottom-sheet-container-xlarge',
+          'sf-bottom-sheet-container-xlarge',
           breakpointObserver.isMatched(Breakpoints.XLarge),
         );
       });

@@ -1,12 +1,4 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 
-import { Directionality } from '@angular/cdk/bidi';
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import {
   ComponentPortal,
@@ -34,19 +26,14 @@ import { SfBottomSheetContainer } from './bottom-sheet-container';
 import { SfBottomSheetModule } from './bottom-sheet-module';
 import { SfBottomSheetRef } from './bottom-sheet-ref';
 
-/** Injection token that can be used to specify default bottom sheet options. */
 export const SF_BOTTOM_SHEET_DEFAULT_OPTIONS = new InjectionToken<
   SfBottomSheetConfig
->('mat-bottom-sheet-default-options');
+>('sf-bottom-sheet-default-options');
 
-/**
- * Service to trigger Material Design bottom sheets.
- */
 @Injectable({ providedIn: SfBottomSheetModule })
 export class SfBottomSheet implements OnDestroy {
   private _bottomSheetRefAtThisLevel: SfBottomSheetRef<any> | null = null;
 
-  /** Reference to the currently opened bottom sheet. */
   get _openedBottomSheetRef(): SfBottomSheetRef<any> | null {
     const parent = this._parentBottomSheet;
     return parent
@@ -69,7 +56,7 @@ export class SfBottomSheet implements OnDestroy {
     @Optional()
     @Inject(SF_BOTTOM_SHEET_DEFAULT_OPTIONS)
     private _defaultOptions?: SfBottomSheetConfig,
-  ) {}
+  ) { }
 
   /**
    * Opens a bottom sheet containing the given component.
@@ -122,23 +109,18 @@ export class SfBottomSheet implements OnDestroy {
       ref.instance = contentRef.instance;
     }
 
-    // When the bottom sheet is dismissed, clear the reference to it.
     ref.afterDismissed().subscribe(() => {
-      // Clear the bottom sheet ref if it hasn't already been replaced by a newer one.
       if (this._openedBottomSheetRef == ref) {
         this._openedBottomSheetRef = null;
       }
     });
 
     if (this._openedBottomSheetRef) {
-      // If a bottom sheet is already in view, dismiss it and enter the
-      // new bottom sheet after exit animation is complete.
       this._openedBottomSheetRef
         .afterDismissed()
         .subscribe(() => ref.containerInstance.enter());
       this._openedBottomSheetRef.dismiss();
     } else {
-      // If no bottom sheet is in view, enter the new bottom sheet.
       ref.containerInstance.enter();
     }
 
@@ -163,9 +145,6 @@ export class SfBottomSheet implements OnDestroy {
     }
   }
 
-  /**
-   * Attaches the bottom sheet container component to the overlay.
-   */
   private _attachContainer(
     overlayRef: OverlayRef,
     config: SfBottomSheetConfig,
@@ -229,17 +208,6 @@ export class SfBottomSheet implements OnDestroy {
       { provide: SfBottomSheetRef, useValue: bottomSheetRef },
       { provide: SF_BOTTOM_SHEET_DATA, useValue: config.data },
     ];
-
-    if (
-      config.direction &&
-      (!userInjector ||
-        !userInjector.get<Directionality | null>(Directionality, null))
-    ) {
-      providers.push({
-        provide: Directionality,
-        useValue: { value: config.direction, change: observableOf() },
-      });
-    }
 
     return Injector.create({
       parent: userInjector || this._injector,

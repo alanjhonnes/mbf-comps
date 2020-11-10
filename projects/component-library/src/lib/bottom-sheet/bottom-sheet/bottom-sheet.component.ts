@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   OnInit,
   TemplateRef,
   ViewEncapsulation,
@@ -16,11 +17,14 @@ import { SfBottomSheetRef } from './bottom-sheet-ref';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit {
-  constructor(private _sfBottomSheet: SfBottomSheet) {}
+  constructor(private _sfBottomSheet: SfBottomSheet) { }
+
+  @Input()
+  contentTemplate: TemplateRef<any>;
 
   bottomSheet: SfBottomSheetRef;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   open(template: TemplateRef<any>): void {
     this.bottomSheet = this._sfBottomSheet.open(template);

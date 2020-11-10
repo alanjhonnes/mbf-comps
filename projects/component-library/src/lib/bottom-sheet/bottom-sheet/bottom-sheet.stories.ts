@@ -7,9 +7,11 @@ storiesOf('BottomSheet', module).add('Default settings', () => {
     moduleMetadata: {
       imports: [BottomSheetModule],
     },
-    props: {},
+    props: {
+      clicked: action('clicked'),
+    },
     template: `
-      <sf-bottom-sheet >
+      <sf-bottom-sheet [contentTemplate]="contentTemplate">
          <span>Tudo certo ?</span>
       </sf-bottom-sheet>
       `,
