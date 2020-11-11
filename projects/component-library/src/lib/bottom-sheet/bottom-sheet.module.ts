@@ -1,18 +1,20 @@
 import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SfBottomSheetModule } from './bottom-sheet/bottom-sheet-module';
+import { SfBottomSheetContainer } from './bottom-sheet/bottom-sheet-container';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 
 @NgModule({
-  declarations: [BottomSheetComponent],
+  declarations: [SfBottomSheetContainer],
   imports: [
     CommonModule,
     OverlayModule,
     BrowserAnimationsModule,
-    SfBottomSheetModule,
+    PortalModule,
   ],
-  exports: [BottomSheetComponent],
+  exports: [SfBottomSheetContainer],
+  entryComponents: [SfBottomSheetContainer],
 })
-export class BottomSheetModule {}
+export class SfBottomSheetModule { }

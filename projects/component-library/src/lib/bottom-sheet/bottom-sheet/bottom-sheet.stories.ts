@@ -1,19 +1,36 @@
-import { action } from '@storybook/addon-actions';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { storiesOf } from '@storybook/angular';
-import { BottomSheetModule } from '../bottom-sheet.module';
+import { SfBottomSheetModule } from '../bottom-sheet.module';
+import { SfBottomSheetService } from './bottom-sheet';
+
+
+@Component({
+  selector: 'sf-bottom-sheet-example',
+  template: `
+   <button (click)="open(template)">Open</button>
+
+    <ng-template #template>
+      TESTE BOTTOM SHEET
+    </ng-template>
+  `,
+})
+class BottomSheetExampleComponent implements OnInit {
+  constructor(private _sfBottomSheet: SfBottomSheetService) { }
+
+  ngOnInit(): void { }
+
+  open(template: TemplateRef<any>): void {
+    this._sfBottomSheet.open(template);
+  }
+}
 
 storiesOf('BottomSheet', module).add('Default settings', () => {
   return {
     moduleMetadata: {
-      imports: [BottomSheetModule],
+      imports: [SfBottomSheetModule],
+      declarations: [BottomSheetExampleComponent],
     },
-    props: {
-      clicked: action('clicked'),
-    },
-    template: `
-      <sf-bottom-sheet [contentTemplate]="contentTemplate">
-         <span>Tudo certo ?</span>
-      </sf-bottom-sheet>
-      `,
+    template: '<sf-bottom-sheet-example></sf-bottom-sheet-example>',
+    props: {},
   };
 });

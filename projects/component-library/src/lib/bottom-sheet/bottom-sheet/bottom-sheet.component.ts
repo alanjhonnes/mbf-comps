@@ -6,7 +6,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { SfBottomSheet } from './bottom-sheet';
+import { SfBottomSheetService } from './bottom-sheet';
 import { SfBottomSheetRef } from './bottom-sheet-ref';
 
 @Component({
@@ -17,7 +17,7 @@ import { SfBottomSheetRef } from './bottom-sheet-ref';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit {
-  constructor(private _sfBottomSheet: SfBottomSheet) { }
+  constructor(private _sfBottomSheet: SfBottomSheetService) { }
 
   @Input()
   contentTemplate: TemplateRef<any>;

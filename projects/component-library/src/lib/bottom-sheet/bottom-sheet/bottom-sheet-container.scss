@@ -12,6 +12,13 @@ $mat-bottom-sheet-container-horizontal-padding: 16px !default;
   outline: 0;
   max-height: 80vh;
   overflow: auto;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+
+  background-color: #FFFFFF;
+  border-radius: 20px 20px 0px 0px;
 
   @include cdk-high-contrast(active, off) {
     outline: 1px solid;

@@ -3,7 +3,7 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import {
   ComponentPortal,
   ComponentType,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -15,14 +15,14 @@ import {
   Optional,
   SkipSelf,
   StaticProvider,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
+import { SfBottomSheetModule } from '../bottom-sheet.module';
 import {
   SfBottomSheetConfig,
-  SF_BOTTOM_SHEET_DATA
+  SF_BOTTOM_SHEET_DATA,
 } from './bottom-sheet-config';
 import { SfBottomSheetContainer } from './bottom-sheet-container';
-import { SfBottomSheetModule } from './bottom-sheet-module';
 import { SfBottomSheetRef } from './bottom-sheet-ref';
 
 export const SF_BOTTOM_SHEET_DEFAULT_OPTIONS = new InjectionToken<
@@ -30,7 +30,7 @@ export const SF_BOTTOM_SHEET_DEFAULT_OPTIONS = new InjectionToken<
 >('sf-bottom-sheet-default-options');
 
 @Injectable({ providedIn: SfBottomSheetModule })
-export class SfBottomSheet implements OnDestroy {
+export class SfBottomSheetService implements OnDestroy {
   private _bottomSheetRefAtThisLevel: SfBottomSheetRef<any> | null = null;
 
   get _openedBottomSheetRef(): SfBottomSheetRef<any> | null {
@@ -51,7 +51,7 @@ export class SfBottomSheet implements OnDestroy {
   constructor(
     private _overlay: Overlay,
     private _injector: Injector,
-    @Optional() @SkipSelf() private _parentBottomSheet: SfBottomSheet,
+    @Optional() @SkipSelf() private _parentBottomSheet: SfBottomSheetService,
     @Optional()
     @Inject(SF_BOTTOM_SHEET_DEFAULT_OPTIONS)
     private _defaultOptions?: SfBottomSheetConfig,
