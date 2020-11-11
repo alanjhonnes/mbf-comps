@@ -14,12 +14,13 @@
 
   &__item {
     position: absolute;
-    transition: all 0.3s ease-in;
+    transition: all 1s ease-in-out;
+    transition-timing-function: linear;
+    transition-duration: 1s;
 
     &[data-pos='0'] {
-      transform: translateX(0) scale(1);
-      margin-left: 20px;
-      z-index: 5;
+      transform: translateX(5px) scale(1);
+      z-index: 4;
     }
 
     &[data-pos='-1'],
@@ -29,15 +30,13 @@
     }
 
     &[data-pos='-1'] {
-      transform: translateX(-22%) scale(0.9);
-      margin-left: 20px;
-      z-index: 4;
+      transform: translateX(-12%) scale(0.9);
+      z-index: 3;
     }
 
     &[data-pos='1'] {
-      transform: translateX(22%) scale(0.9);
-      margin-left: 15px;
-      z-index: 4;
+      transform: translateX(14%) scale(0.9);
+      z-index: 3;
     }
 
     &[data-pos='-2'],
@@ -48,12 +47,12 @@
 
     &[data-pos='-2'] {
       transform: translateX(-70%) scale(0.8);
-      z-index: 3;
+      z-index: 2;
     }
 
     &[data-pos='2'] {
       transform: translateX(70%) scale(0.8);
-      z-index: 3;
+      z-index: 2;
     }
   }
 }
