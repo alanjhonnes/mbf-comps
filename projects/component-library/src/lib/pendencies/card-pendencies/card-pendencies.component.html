@@ -2,6 +2,12 @@
     <p class="card-container__info">{{text}}</p>
     <h2 class="card-container__title">{{title}}</h2>
 
-    <sf-badge-item number="8" text="Pendencia "></sf-badge-item>
+    <div>
+        <sf-clickable-list-item class="card-container__item" >
+            Conteúdo &nbsp; 
+        </sf-clickable-list-item>
+        <sf-badge class="card-container__notification">22</sf-badge>
+    </div>
+    
     <ng-content></ng-content>
 </div>

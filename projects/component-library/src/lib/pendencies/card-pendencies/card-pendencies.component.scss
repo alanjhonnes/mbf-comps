@@ -12,16 +12,13 @@
     color: #fab52a;
   }
 
-  &__list {
-    padding: 0;
+  &__item {
+    width: 34%;
   }
 
-  &__listItem {
-    list-style: none;
-    background: linear-gradient(90deg, #ededed 0%, #fbfbfb 98.1%);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
+  &__notification {
+    position: absolute;
+    margin-top: 4px;
+    margin-left: -34px;
   }
 }
