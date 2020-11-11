@@ -1,0 +1,24 @@
+<div class="sf-slider-card">
+    <div class="sf-slider-card__container" (swipeleft)="onSwipeLeft($event,-1)" (swiperight)="onSwipeRight($event,+1)">
+
+        <ul class="sf-slider-card__list">
+
+            <li class="sf-slider-card__item" data-pos="-1">
+                <sf-card-visualization></sf-card-visualization>
+                <h3>card -1</h3>
+            </li>
+
+            <li class="sf-slider-card__item" *ngIf="slides == 0" data-pos="0">
+                <sf-card-visualization></sf-card-visualization>
+                <h3>card 0</h3>
+            </li>
+
+            <li class="sf-slider-card__item" data-pos="1">
+                <sf-card-visualization></sf-card-visualization>
+                <h3>card 1</h3>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
