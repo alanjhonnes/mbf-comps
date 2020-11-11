@@ -1,8 +1,5 @@
 @import '@angular/cdk/a11y';
 
-// The bottom sheet minimum width on larger screen sizes is based
-// on increments of the toolbar, according to the spec. See:
-// https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs
 $_mat-bottom-sheet-width-increment: 64px;
 $mat-bottom-sheet-container-vertical-padding: 8px !default;
 $mat-bottom-sheet-container-horizontal-padding: 16px !default;
@@ -21,7 +18,6 @@ $mat-bottom-sheet-container-horizontal-padding: 16px !default;
   }
 }
 
-// Applies a border radius to the bottom sheet. Should only be applied when it's not full-screen.
 %_mat-bottom-sheet-container-border-radius {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
