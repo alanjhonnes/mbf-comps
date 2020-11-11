@@ -9,13 +9,13 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
-import { MatCommonModule } from '@angular/material/core';
+import { SfBottomSheetCommonModule } from './bottom-sheet-common-module';
 import { SfBottomSheetContainer } from './bottom-sheet-container';
 
 @NgModule({
-  imports: [OverlayModule, MatCommonModule, PortalModule],
-  exports: [SfBottomSheetContainer, MatCommonModule],
+  imports: [OverlayModule, SfBottomSheetCommonModule, PortalModule],
+  exports: [SfBottomSheetContainer, SfBottomSheetCommonModule],
   declarations: [SfBottomSheetContainer],
   entryComponents: [SfBottomSheetContainer],
 })
-export class SfBottomSheetModule {}
+export class SfBottomSheetModule { }

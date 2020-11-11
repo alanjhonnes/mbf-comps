@@ -3,7 +3,7 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import {
   ComponentPortal,
   ComponentType,
-  TemplatePortal,
+  TemplatePortal
 } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -15,12 +15,11 @@ import {
   Optional,
   SkipSelf,
   StaticProvider,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
-import { of as observableOf } from 'rxjs';
 import {
   SfBottomSheetConfig,
-  SF_BOTTOM_SHEET_DATA,
+  SF_BOTTOM_SHEET_DATA
 } from './bottom-sheet-config';
 import { SfBottomSheetContainer } from './bottom-sheet-container';
 import { SfBottomSheetModule } from './bottom-sheet-module';
