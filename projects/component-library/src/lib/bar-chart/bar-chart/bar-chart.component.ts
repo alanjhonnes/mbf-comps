@@ -36,6 +36,10 @@ export class BarChartComponent implements OnInit {
     this.loadColors();
   }
 
+  ngOnChanges(): void {
+    this.loadChartDataSet();
+  }
+
   loadChartDataSet() {
     this.chartDataSets = [
       {
