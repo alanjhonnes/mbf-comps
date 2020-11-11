@@ -1,13 +1,15 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  Input,
   OnInit,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import { BaseChartDirective, Color, Label } from 'ng2-charts';
+import Chart, { ChartTooltipItem } from 'chart.js';
+import { CurrencyUtil } from './currency-util';
 
 @Component({
   selector: 'sf-patrimonial-evolution-chart',
@@ -16,114 +18,118 @@ import { BaseChartDirective, Color, Label } from 'ng2-charts';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatrimonialEvolutionChartComponent implements OnInit {
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    {
-      data: [180, 480, 770, 90, 1000, 270, 400],
-      label: 'Series C',
-      yAxisID: 'y-axis-1',
-    },
-  ];
+export class PatrimonialEvolutionChartComponent
+  implements OnInit, AfterViewInit {
+  @ViewChild('canvas')
+  canvas: ElementRef;
 
-  public lineChartLabels: Label[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
+  @Input()
+  labels: string[];
 
-  public lineChartOptions: any = {
-    responsive: true,
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
-        },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          },
-        },
-      ],
-    },
-    annotation: {
-      annotations: [
-        {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno',
-          },
-        },
-      ],
-    },
-  };
+  @Input()
+  datasets: any;
 
-  public lineChartColors: Color[] = [
-    {
-      // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-    },
-    {
-      // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)',
-    },
-    {
-      // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-    },
-  ];
+  constructor() {}
 
-  public lineChartLegend = true;
-  public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [pluginAnnotations];
+  ngAfterViewInit() {
+    const draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+      draw: function () {
+        draw.apply(this, arguments);
+        const ctx = this.chart.chart.ctx;
+        const _stroke = ctx.stroke;
+        ctx.stroke = function () {
+          ctx.save();
+          ctx.shadowColor = '#000000';
+          ctx.shadowBlur = 10;
+          ctx.shadowOffsetY = 4;
+          _stroke.apply(this, arguments);
+          ctx.restore();
+        };
+      },
+    });
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+    Chart.defaults.LineWithLine = Chart.defaults.line;
+    Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+      draw: function (ease: any) {
+        Chart.controllers.line.prototype.draw.call(this, ease);
 
-  constructor() { }
-
-  ngOnInit(): void { }
-
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+        if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
+          var activePoint = this.chart.tooltip._active[0],
+            ctx = this.chart.ctx,
+            x = activePoint.tooltipPosition().x,
+            topY = this.chart.scales['y-axis-0'].top,
+            bottomY = this.chart.scales['y-axis-0'].bottom;
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(x, topY);
+          ctx.lineTo(x, bottomY);
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#07C';
+          ctx.stroke();
+          ctx.restore();
+        }
+      },
+    });
+    this.generateChartConfig();
   }
 
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+  ngOnInit(): void {}
+
+  generateChartConfig(): Chart {
+    return new Chart(this.canvas.nativeElement, {
+      type: 'LineWithLine',
+      data: {
+        labels: this.labels,
+        datasets: [...this.datasets],
+      },
+      options: {
+        legend: {
+          display: false,
+        },
+        responsive: false,
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            title: (tooltipItem: ChartTooltipItem[]) => {
+              return tooltipItem[0].label?.toString() || '';
+            },
+            label: (tooltipItem: ChartTooltipItem) => {
+              return CurrencyUtil.formatCurrency(tooltipItem.value);
+            },
+            footer: (tooltipItems: ChartTooltipItem[], data: any) => {
+              let sum = 0;
+              tooltipItems.forEach((it: any) => {
+                sum += data.datasets[it.datasetIndex].data[it.index];
+              });
+              return `Total ${CurrencyUtil.formatCurrency(sum)} `;
+            },
+          },
+        },
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                display: false,
+              },
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                display: false,
+              },
+              gridLines: {
+                borderDash: [2, 2],
+              },
+            },
+          ],
+        },
+      },
+    });
   }
 }
