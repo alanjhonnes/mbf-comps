@@ -1,6 +1,7 @@
-<p>invest-bar works!</p>
-<div class="progress-bar-container">
-    <input type="range" min="0" max="100" id="volume" class="progress-bar">
-    <label class="progress-bar-hidden" for="volume">Volume</label>
-    
+<p class="progress-bar-description">{{description}} <b class="progress-bar-title">{{title}}</b></p>
+<div [ngClass]="(profile == true) ? 'progress-bar-container-blue' : 'progress-bar-container-red'">
+<input type="range" value='{{value}}' disabled min="0" max="4" id="volume" class="progress-bar">
 </div>
+
+
+

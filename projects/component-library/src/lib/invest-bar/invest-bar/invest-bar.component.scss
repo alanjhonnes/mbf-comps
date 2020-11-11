@@ -2,7 +2,54 @@
   display: block;
 }
 
-input[type='range'] {
+.progress-bar-description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #7d7d7d;
+}
+
+.progress-bar-title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000000;
+}
+
+// .progress-count {
+//   border-left: 11px solid transparent;
+//   border-right: 11px solid transparent;
+//   transform-origin: 0 10%;
+//   border-top: 17px solid #7495b8;
+//   width: 10px;
+//   margin-left: 50%;
+// }
+
+// .progress-bar-blue {
+//   width: 100%;
+//   min-height: 20px;
+//   background: linear-gradient(270deg, #7495b8 0%, #00003c 100%);
+//   border-radius: 4px;
+//   transform: matrix(-1, 0, 0, 1, 0, 0);
+// }
+
+// .progress-bar-red {
+//   width: 100%;
+//   min-height: 20px;
+//   background: linear-gradient(
+//     270deg,
+//     #6d0017 11.16%,
+//     #96143c 36.87%,
+//     #a73b5c 62.31%,
+//     #c5708b 88.71%
+//   );
+//   border-radius: 4px;
+//   transform: matrix(-1, 0, 0, 1, 0, 0);
+// }
+
+.progress-bar-container-blue input[type='range'] {
   appearance: none;
   width: 100%;
   min-height: 20px;
@@ -11,7 +58,7 @@ input[type='range'] {
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
-input[type='range']::-webkit-slider-thumb {
+.progress-bar-container-blue input[type='range']::-webkit-slider-thumb {
   appearance: none;
   margin-top: -15px;
   width: 0;
@@ -20,4 +67,28 @@ input[type='range']::-webkit-slider-thumb {
   border-right: 11px solid transparent;
   transform-origin: 0 10%;
   border-top: 17px solid #7495b8;
+}
+.progress-bar-container-red input[type='range'] {
+  appearance: none;
+  width: 100%;
+  min-height: 20px;
+  background: linear-gradient(
+    270deg,
+    #6d0017 11.16%,
+    #96143c 36.87%,
+    #a73b5c 62.31%,
+    #c5708b 88.71%
+  );
+  border-radius: 4px;
+}
+
+.progress-bar-container-red input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  margin-top: -15px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  transform-origin: 0 10%;
+  border-top: 17px solid #96143c;
 }
