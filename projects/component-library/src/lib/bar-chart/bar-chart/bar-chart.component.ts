@@ -44,16 +44,15 @@ export class BarChartComponent implements OnInit {
     this.chartDataSets = [
       {
         data: this.chartData,
-        label: 'R$',
         barThickness: 8,
       },
     ];
   }
 
   loadColors() {
-    const el = this.chart.nativeElement.getContext('2d');
+    const ctx = this.chart.nativeElement.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
-    const gradient = el.createLinearGradient(0, 0, 0, 200);
     gradient.addColorStop(0, '#7495B8');
     gradient.addColorStop(1, '#00002D');
 
