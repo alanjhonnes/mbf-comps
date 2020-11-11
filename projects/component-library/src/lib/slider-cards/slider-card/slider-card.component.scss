@@ -17,6 +17,7 @@
     transition: all 0.3s ease-in;
 
     &[data-pos='0'] {
+      transform: translateX(0) scale(1);
       margin-left: 20px;
       z-index: 5;
     }
