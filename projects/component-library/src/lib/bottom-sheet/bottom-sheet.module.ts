@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SfBottomSheetContainer } from './bottom-sheet/bottom-sheet-container';
-import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 
 @NgModule({
   declarations: [SfBottomSheetContainer],

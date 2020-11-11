@@ -7,7 +7,7 @@ import { SfBottomSheetService } from './bottom-sheet';
 @Component({
   selector: 'sf-bottom-sheet-example',
   template: `
-   <button (click)="open(template)">Open</button>
+    <button (click)="open(template)">Open</button>
 
     <ng-template #template>
       TESTE BOTTOM SHEET
