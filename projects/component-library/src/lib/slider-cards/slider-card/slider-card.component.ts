@@ -7,13 +7,15 @@ import {
   ViewChild,
   OnChanges,
   ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { SlideToViewHammerConfig } from '../hammer-config.class';
 
 export interface SlideItem<T = any> {
   item: T;
-  index: number;
+  type: 'active' | 'before' | 'after';
+  offset: number;
 }
 
 @Component({
@@ -30,20 +32,7 @@ export interface SlideItem<T = any> {
   ],
 })
 export class SliderCardComponent implements OnChanges {
-  cards: SlideItem[] = [
-    {
-      index: 0,
-      item: {},
-    },
-    {
-      index: 1,
-      item: {},
-    },
-    {
-      index: -1,
-      item: {},
-    },
-  ];
+  cards: SlideItem[] = [];
 
   trackByFn = (index: number, slide: SlideItem) => {
     return slide.item;
@@ -75,98 +64,81 @@ export class SliderCardComponent implements OnChanges {
   @ViewChild('container')
   containerRef: ElementRef;
 
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   activeIndex = 0;
 
   onSwipeRight() {
-    this.activeIndex = this.activeIndex - 1;
+    if (this.activeIndex > 0) {
+      this.activeIndex = this.activeIndex - 1;
 
-    if (this.activeIndex === -1) {
-      this.activeIndex = this.slideItens.length - 1;
+      if (this.activeIndex === -1) {
+        this.activeIndex = this.slideItens.length - 1;
+      }
+      this.changeActiveIndex(this.activeIndex);
     }
-    this.changeActiveIndex(this.activeIndex);
   }
 
   onSwipeLeft() {
-    this.activeIndex = this.activeIndex + 1;
+    if (this.activeIndex < this.slideItens.length) {
 
-    if (this.activeIndex >= this.slideItens.length) {
-      this.activeIndex = 0;
+      this.activeIndex = this.activeIndex + 1;
+
+      if (this.activeIndex >= this.slideItens.length) {
+        this.activeIndex = 0;
+      }
+      this.changeActiveIndex(this.activeIndex);
     }
-    this.changeActiveIndex(this.activeIndex);
   }
 
   ngOnChanges(changes: any) {
     if (changes.slideItens) {
       this.cards = [];
-      if (this.slideItens.length > 0) {
-        this.cards.push({
-          index: 0,
-          item: this.slideItens[0],
-        });
-        if (this.slideItens.length > 1)
+      this.slideItens.forEach((value, index) => {
+        if (index === 0) {
           this.cards.push({
-            index: 1,
-            item: this.slideItens[1],
+            type: 'active',
+            offset: 0,
+            item: value,
           });
-      }
-      if (this.slideItens.length > 1) {
-        this.cards.push({
-          index: -1,
-          item: this.slideItens[2],
-        });
-      }
+        } else {
+          this.cards.push({
+            offset: index,
+            type: 'after',
+            item: value,
+          });
+        }
+      });
     }
   }
 
-  changeActiveIndex(index: number) {
-    if (this.slideItens.length > this.maxVisible) {
-      this.cards = [];
-      const mainCard = this.slideItens[index];
-      const previousCard =
-        index === 0
-          ? this.slideItens[this.slideItens.length - 1]
-          : this.slideItens[index - 1];
-      const nextCard =
-        index === this.slideItens.length - 1
-          ? this.slideItens[0]
-          : this.slideItens[index + 1];
-      this.cards.push({
-        index: 0,
-        item: mainCard,
-      });
-      this.cards.push({
-        index: 1,
-        item: nextCard,
-      });
-      this.cards.push({
-        index: -1,
-        item: previousCard,
-      });
-    } else {
-      this.cards = [];
-      const mainCard = this.slideItens[index];
-      const previousCard =
-        index === 0
-          ? this.slideItens[this.slideItens.length - 1]
-          : this.slideItens[index - 1];
-      const nextCard =
-        index === this.slideItens.length - 1
-          ? this.slideItens[0]
-          : this.slideItens[index + 1];
-      this.cards.push({
-        index: 0,
-        item: mainCard,
-      });
-      this.cards.push({
-        index: 1,
-        item: nextCard,
-      });
-      this.cards.push({
-        index: -1,
-        item: previousCard,
-      });
+  changeActiveIndex(activeIndex: number) {
+    this.cards.forEach((value, cardIndex) => {
+      value.type = activeIndex === cardIndex
+        ? 'active'
+        : cardIndex < activeIndex
+          ? 'before'
+          : 'after';
+      value.offset = Math.abs(activeIndex - cardIndex);
+      // return {
+      //   type: activeIndex === cardIndex
+      //     ? 'active'
+      //     : cardIndex < activeIndex
+      //       ? 'before'
+      //       : 'after',
+      //   offset: Math.abs(activeIndex - cardIndex),
+      //   item: value,
+      // };
+    });
+    this.changeDetectorRef.detectChanges();
+  }
+
+  getNgClassForCard(card: SlideItem): Record<string, boolean> {
+    const classes: Record<string, boolean> = {};
+    classes[`sf-slider-card__item--${card.type}`] = true;
+    if (card.type !== 'active') {
+      classes[`sf-slider-card__item--${card.type}-${card.offset}`] = true;
     }
+    return classes;
   }
 }

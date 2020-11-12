@@ -1,12 +1,15 @@
 <div class="sf-slider-card">
-    {{ activeIndex }}
-    <div class="sf-slider-card__container" (swipeleft)="onSwipeLeft()" (swiperight)="onSwipeRight()">
-        <ul class="sf-slider-card__list">
-            <li class="sf-slider-card__item" *ngFor="let card of cards; trackBy: trackByFn"
-                [attr.data-pos]="card.index">
-                <sf-card-visualization [cardNumber]="card.item.index">
-                </sf-card-visualization>
-            </li>
-        </ul>
-    </div>
+  {{ activeIndex }}
+  <div class="sf-slider-card__container"
+       (swipeleft)="onSwipeLeft()"
+       (swiperight)="onSwipeRight()">
+    <ul class="sf-slider-card__list">
+      <li class="sf-slider-card__item"
+          *ngFor="let card of cards; trackBy: trackByFn"
+          [ngClass]="getNgClassForCard(card)">
+        <sf-card-visualization [cardNumber]="card.item.index">
+        </sf-card-visualization>
+      </li>
+    </ul>
+  </div>
 </div>

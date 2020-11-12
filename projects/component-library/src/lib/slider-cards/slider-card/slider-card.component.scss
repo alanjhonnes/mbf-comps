@@ -18,41 +18,34 @@
     transition-timing-function: linear;
     transition-duration: 1s;
 
-    &[data-pos='0'] {
+    &--active {
       transform: translateX(5px) scale(1);
       z-index: 4;
     }
 
-    &[data-pos='-1'],
-    &[data-pos='1'] {
+    &--before {
+      transform: translateX(-70%) scale(0.8);
+      opacity: 0;
+    }
+
+    &--after {
+      transform: translateX(70%) scale(0.8);
+      opacity: 0;
+    }
+
+    &--before-1,
+    &--after-1 {
       opacity: 0.7;
       filter: blur(1px) grayscale(10%);
+      z-index: 3;
     }
 
-    &[data-pos='-1'] {
+    &--before-1 {
       transform: translateX(-12%) scale(0.9);
-      z-index: 3;
     }
 
-    &[data-pos='1'] {
+    &--after-1 {
       transform: translateX(14%) scale(0.9);
-      z-index: 3;
-    }
-
-    &[data-pos='-2'],
-    &[data-pos='2'] {
-      opacity: 0.4;
-      filter: blur(3px) grayscale(20%);
-    }
-
-    &[data-pos='-2'] {
-      transform: translateX(-70%) scale(0.8);
-      z-index: 2;
-    }
-
-    &[data-pos='2'] {
-      transform: translateX(70%) scale(0.8);
-      z-index: 2;
     }
   }
 }
