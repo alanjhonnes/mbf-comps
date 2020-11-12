@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import Chart, { ChartTooltipItem } from 'chart.js';
+import Chart, { ChartDataSets, ChartTooltipItem } from 'chart.js';
 import { CurrencyUtil } from './currency-util';
 
 @Component({
@@ -27,35 +27,17 @@ export class PatrimonialEvolutionChartComponent
   labels: string[];
 
   @Input()
-  datasets: any;
+  datasets: ChartDataSets[];
 
   constructor() {}
 
   ngAfterViewInit() {
-    const draw = Chart.controllers.line.prototype.draw;
-    Chart.controllers.line = Chart.controllers.line.extend({
-      draw: function () {
-        draw.apply(this, arguments);
-        const ctx = this.chart.chart.ctx;
-        const _stroke = ctx.stroke;
-        ctx.stroke = function () {
-          ctx.save();
-          ctx.shadowColor = '#000000';
-          ctx.shadowBlur = 10;
-          ctx.shadowOffsetY = 4;
-          _stroke.apply(this, arguments);
-          ctx.restore();
-        };
-      },
-    });
-
     Chart.defaults.LineWithLine = Chart.defaults.line;
     Chart.controllers.LineWithLine = Chart.controllers.line.extend({
       draw: function (ease: any) {
         Chart.controllers.line.prototype.draw.call(this, ease);
-
         if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
-          var activePoint = this.chart.tooltip._active[0],
+          let activePoint = this.chart.tooltip._active[0],
             ctx = this.chart.ctx,
             x = activePoint.tooltipPosition().x,
             topY = this.chart.scales['y-axis-0'].top,
@@ -64,8 +46,8 @@ export class PatrimonialEvolutionChartComponent
           ctx.beginPath();
           ctx.moveTo(x, topY);
           ctx.lineTo(x, bottomY);
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = '#07C';
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = '#2A2A5C';
           ctx.stroke();
           ctx.restore();
         }
@@ -77,6 +59,13 @@ export class PatrimonialEvolutionChartComponent
   ngOnInit(): void {}
 
   generateChartConfig(): Chart {
+    //TODO ajustar
+    const ctx = this.canvas.nativeElement.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 100);
+    gradient.addColorStop(0, '#00003C');
+    gradient.addColorStop(1, '#7E7E9D');
+    this.datasets[0].backgroundColor = gradient;
+
     return new Chart(this.canvas.nativeElement, {
       type: 'LineWithLine',
       data: {
@@ -84,8 +73,18 @@ export class PatrimonialEvolutionChartComponent
         datasets: [...this.datasets],
       },
       options: {
+        layout: {
+          padding: {
+            right: 20,
+          },
+        },
         legend: {
           display: false,
+        },
+        elements: {
+          point: {
+            radius: 0,
+          },
         },
         responsive: false,
         tooltips: {
@@ -122,9 +121,11 @@ export class PatrimonialEvolutionChartComponent
             {
               ticks: {
                 display: false,
+                stepSize: 2,
               },
               gridLines: {
                 borderDash: [2, 2],
+                drawBorder: false,
               },
             },
           ],

@@ -1,18 +1,19 @@
-import { array, knob, object, select } from '@storybook/addon-knobs';
+import { array, object } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/angular';
+import { ChartDataSets } from 'chart.js';
 import { PatrimonialEvolutionChartModule } from '../patrimonial-evolution-chart.module';
 
 storiesOf('PatrimonialEvolutionChart', module).add('Default settings', () => {
-  const datasets = [
+  const datasets: ChartDataSets[] = [
     {
-      data: [10, 22, 13, 19, 5],
+      data: [1, 5, 3, 9, 11],
       backgroundColor: 'rgba(0,0,255,0.3)',
-      bordercolor: 'rgba(0,0,255,0.3)',
+      borderColor: 'rgba(0,0,255,0.3)',
     },
     {
-      data: [20, 16, 5, 10, 14],
+      data: [2, 6, 4, 10, 12],
       backgroundColor: 'rgba(0,0,255,0.3)',
-      bordercolor: 'rgba(0,0,255,0.3)',
+      borderColor: 'rgba(0,0,255,0.3)',
     },
   ];
 
@@ -21,7 +22,13 @@ storiesOf('PatrimonialEvolutionChart', module).add('Default settings', () => {
       imports: [PatrimonialEvolutionChartModule],
     },
     props: {
-      labels: array('labels', ['Janeiro', 'Fevereiro', 'Março', 'Abril']),
+      labels: array('labels', [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+      ]),
       datasets: object('datasets', datasets),
     },
     template: `
