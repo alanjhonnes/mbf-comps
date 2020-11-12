@@ -16,7 +16,7 @@
     position: absolute;
     transition: all 1s ease-in-out;
     transition-timing-function: linear;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
 
     &--active {
       transform: translateX(5px) scale(1);
@@ -24,12 +24,12 @@
     }
 
     &--before {
-      transform: translateX(-70%) scale(0.8);
+      transform: translateX(20%) scale(0.8);
       opacity: 0;
     }
 
     &--after {
-      transform: translateX(70%) scale(0.8);
+      transform: translateX(-20%) scale(0.8);
       opacity: 0;
     }
 

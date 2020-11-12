@@ -4,9 +4,7 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   Input,
-  ViewChild,
   OnChanges,
-  ElementRef,
   ChangeDetectorRef,
 } from '@angular/core';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -53,30 +51,19 @@ export class SliderCardComponent implements OnChanges {
   @HostBinding('class.sf-slider-card')
   readonly defaultClass = true;
 
-  // @Output()
-  // dragToTheSide = new EventEmitter<void>();
-
-  @Input()
-  slideThreshold: number;
-  startTranslateX = 0;
-  translateX = 0;
-
-  @ViewChild('container')
-  containerRef: ElementRef;
-
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   activeIndex = 0;
 
   onSwipeRight() {
-    if (this.activeIndex > 0) {
-      this.activeIndex = this.activeIndex - 1;
-
-      if (this.activeIndex === -1) {
-        this.activeIndex = this.slideItens.length - 1;
-      }
-      this.changeActiveIndex(this.activeIndex);
+    // if (this.activeIndex > 0) {
+    this.activeIndex = this.activeIndex - 1;
+    if (this.activeIndex === -1) {
+      this.activeIndex = this.slideItens.length - 1;
     }
+    this.changeActiveIndex(this.activeIndex);
+    // }
+
   }
 
   onSwipeLeft() {
@@ -120,15 +107,6 @@ export class SliderCardComponent implements OnChanges {
           ? 'before'
           : 'after';
       value.offset = Math.abs(activeIndex - cardIndex);
-      // return {
-      //   type: activeIndex === cardIndex
-      //     ? 'active'
-      //     : cardIndex < activeIndex
-      //       ? 'before'
-      //       : 'after',
-      //   offset: Math.abs(activeIndex - cardIndex),
-      //   item: value,
-      // };
     });
     this.changeDetectorRef.detectChanges();
   }

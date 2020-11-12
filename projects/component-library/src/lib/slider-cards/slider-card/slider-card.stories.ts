@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/angular';
 import { SliderCardsModule } from '../slider-cards.module';
-import { action } from '@storybook/addon-actions';
+
 
 storiesOf('Slider Card', module).add('Default settings', () => {
   return {
