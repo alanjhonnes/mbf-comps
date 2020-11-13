@@ -29,20 +29,23 @@ export class PatrimonialEvolutionChartComponent
   @Input()
   datasets: any;
 
+  private readonly LETTERS = '0123456789ABCDEF';
+  private readonly LINE_WITH_LINE = 'LineWithLine';
+  private readonly LINE = 'line';
+
   constructor() {}
 
   ngAfterViewInit() {
-    this.generateChartConfig();
     this.generateDrawChart();
+    this.generateChartConfig();
   }
 
   ngOnInit(): void {}
 
   private generateRandonColor(): string {
-    const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+      color += this.LETTERS[Math.floor(Math.random() * 16)];
     }
     return color;
   }
@@ -57,9 +60,8 @@ export class PatrimonialEvolutionChartComponent
   }
 
   private generateDrawChart(): void {
-    //Chart.defaults.LineWithLine = Chart.defaults.line;
-    //Chart.controllers.LineWithLine = Chart.controllers.line.extend({
-    Chart.controllers.line.extend({
+    Chart.defaults.LineWithLine = Chart.defaults.line;
+    Chart.controllers.LineWithLine = Chart.controllers.line.extend({
       draw: function (ease: any) {
         Chart.controllers.line.prototype.draw.call(this, ease);
         if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
@@ -81,11 +83,33 @@ export class PatrimonialEvolutionChartComponent
     });
   }
 
+  private getBiggerNumberDatasets(): number {
+    let max = 0;
+    for (let i = 0; i < this.datasets[0].data.length; i++) {
+      let sum = 0;
+      for (const dataset of this.datasets) {
+        sum += dataset.data[i];
+      }
+      max = sum > max ? sum : max;
+    }
+    return max;
+  }
+
+  private setTypeChart(): void {
+    for (let i = 0; i < this.datasets.length; i++) {
+      this.datasets[i].type =
+        i + 1 === this.datasets.length ? this.LINE_WITH_LINE : this.LINE;
+    }
+  }
+
   private generateChartConfig(): Chart {
+    this.setTypeChart();
+    const max = this.getBiggerNumberDatasets();
     const ctx = this.canvas.nativeElement.getContext('2d');
     this.setColorDatasets(ctx);
+
     return new Chart(ctx, {
-      type: 'line',
+      type: this.LINE_WITH_LINE,
       data: {
         labels: this.labels,
         datasets: [...this.datasets],
@@ -99,7 +123,8 @@ export class PatrimonialEvolutionChartComponent
         layout: {
           padding: {
             right: 20,
-            bottom: -160,
+            bottom: -20,
+            top: 20,
           },
         },
         legend: {
@@ -147,7 +172,8 @@ export class PatrimonialEvolutionChartComponent
               stacked: true,
               ticks: {
                 display: false,
-                beginAtZero: true,
+                max: max,
+                stepSize: 10,
               },
               gridLines: {
                 borderDash: [2, 2],
