@@ -57,20 +57,4 @@
       margin-top: 51px;
     }
   }
-
-  &__shadow {
-    background: linear-gradient(
-      144.96deg,
-      #aaaaaa 5.62%,
-      #aaaaaa 38.11%,
-      #333333 94.73%
-    );
-    width: 24px;
-    height: 124px;
-    left: 238px;
-    position: absolute;
-    top: 23px;
-    border-radius: 8px;
-    z-index: -1;
-  }
 }
