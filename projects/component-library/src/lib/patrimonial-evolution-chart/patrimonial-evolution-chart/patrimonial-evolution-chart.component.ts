@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import Chart, { ChartDataSets, ChartTooltipItem } from 'chart.js';
+import Chart, { ChartTooltipItem } from 'chart.js';
 import { CurrencyUtil } from './currency-util';
 
 @Component({
@@ -27,13 +27,39 @@ export class PatrimonialEvolutionChartComponent
   labels: string[];
 
   @Input()
-  datasets: ChartDataSets[];
+  datasets: any;
 
   constructor() {}
 
   ngAfterViewInit() {
-    Chart.defaults.LineWithLine = Chart.defaults.line;
-    Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+    this.generateChartConfig();
+    this.generateDrawChart();
+  }
+
+  ngOnInit(): void {}
+
+  private generateRandonColor(): string {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  private setColorDatasets(ctx: any) {
+    this.datasets.forEach((it: any) => {
+      const gradient = ctx.createLinearGradient(100, 0, 0, 100);
+      gradient.addColorStop(0, it.colorOne || this.generateRandonColor());
+      gradient.addColorStop(1, it.colorTwo || this.generateRandonColor());
+      it.backgroundColor = gradient;
+    });
+  }
+
+  private generateDrawChart(): void {
+    //Chart.defaults.LineWithLine = Chart.defaults.line;
+    //Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+    Chart.controllers.line.extend({
       draw: function (ease: any) {
         Chart.controllers.line.prototype.draw.call(this, ease);
         if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
@@ -53,29 +79,27 @@ export class PatrimonialEvolutionChartComponent
         }
       },
     });
-    this.generateChartConfig();
   }
 
-  ngOnInit(): void {}
-
-  generateChartConfig(): Chart {
-    //TODO ajustar
+  private generateChartConfig(): Chart {
     const ctx = this.canvas.nativeElement.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 100);
-    gradient.addColorStop(0, '#00003C');
-    gradient.addColorStop(1, '#7E7E9D');
-    this.datasets[0].backgroundColor = gradient;
-
-    return new Chart(this.canvas.nativeElement, {
-      type: 'LineWithLine',
+    this.setColorDatasets(ctx);
+    return new Chart(ctx, {
+      type: 'line',
       data: {
         labels: this.labels,
         datasets: [...this.datasets],
       },
       options: {
+        plugins: {
+          filler: {
+            propagate: true,
+          },
+        },
         layout: {
           padding: {
             right: 20,
+            bottom: -160,
           },
         },
         legend: {
@@ -90,6 +114,7 @@ export class PatrimonialEvolutionChartComponent
         tooltips: {
           mode: 'index',
           intersect: false,
+          backgroundColor: '#2F80ED',
           callbacks: {
             title: (tooltipItem: ChartTooltipItem[]) => {
               return tooltipItem[0].label?.toString() || '';
@@ -119,9 +144,10 @@ export class PatrimonialEvolutionChartComponent
           ],
           yAxes: [
             {
+              stacked: true,
               ticks: {
                 display: false,
-                stepSize: 2,
+                beginAtZero: true,
               },
               gridLines: {
                 borderDash: [2, 2],
