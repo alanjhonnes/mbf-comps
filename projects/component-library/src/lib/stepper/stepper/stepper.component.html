@@ -1,0 +1,17 @@
+<div class="content-stepper">
+    <div class="stepper" data-testid="stepper"
+        *ngIf="(status > 0 && status <= steps.length) && (steps.length && steps.length > 0); else error">
+        <span class="line"></span>
+        <span class="doneLine" [ngStyle]="{'width': doneLine + '%'}"></span>
+        <div class="step" *ngFor="let step of steps; let i = index;" (click)="clickStep.emit(i + 1)">
+            <div class="bullet" [ngClass]="{'progress': (i + 1) <= status }">
+                <p>{{ i + 1 }}</p>
+            </div>
+            <p class="description">{{ step }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #error>
+    <p data-testid="error">Parâmetro inválidos.</p>
+</ng-template>
