@@ -1,0 +1,10 @@
+<div class="icon">
+  <span class="material-icons">more_vert</span>
+
+  <div class="options" *ngIf="show">
+    <div class="option" *ngFor="let option of options; let i = index;" (click)="onSelectOption(option)">
+      <label>{{ option }}</label>
+      <span *ngIf="i + 1 != options.length"></span>
+    </div>
+  </div>
+</div>
