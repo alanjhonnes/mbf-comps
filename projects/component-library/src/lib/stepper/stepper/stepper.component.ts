@@ -1,14 +1,14 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'sf-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StepperComponent implements OnInit {
+export class StepperComponent implements OnInit, OnChanges {
 
   @Input() steps: string[];
 

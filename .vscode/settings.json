@@ -23,22 +23,5 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true,
     "**/dist": true
-  },
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#97ec39",
-    "activityBar.activeBorder": "#3394eb",
-    "activityBar.background": "#97ec39",
-    "activityBar.foreground": "#15202b",
-    "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#3394eb",
-    "activityBarBadge.foreground": "#15202b",
-    "statusBar.background": "#7edd15",
-    "statusBar.foreground": "#15202b",
-    "statusBarItem.hoverBackground": "#63ae11",
-    "titleBar.activeBackground": "#7edd15",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#7edd1599",
-    "titleBar.inactiveForeground": "#15202b99"
-  },
-  "peacock.color": "#7edd15"
+  }
 }
