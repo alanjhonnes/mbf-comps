@@ -1,0 +1,15 @@
+<ng-container *ngTemplateOutlet="default"></ng-container>
+
+<ng-template #default let-default="default">
+    <span class="sf-card-visualization">
+        <div class="sf-card-visualization__left">
+            <span class="sf-card-visualization__left__icon">escudo</span>
+            <span class="sf-card-visualization__left__numero">{{cardNumber}}</span>
+            <span class="sf-card-visualization__left__titular">{{holderName}}</span>
+        </div>
+        <div class="sf-card-visualization__right">
+            <span class="sf-card-visualization__right__logo">Safra</span>
+            <span class="sf-card-visualization__right__bandeira">Visa</span>
+        </div>
+    </span>
+</ng-template>

@@ -1,0 +1,51 @@
+.sf-slider-card {
+  display: flex;
+  // width: 100%;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    list-style: none;
+    position: relative;
+    width: 100%;
+    perspective: 300px;
+    flex-direction: row;
+  }
+
+  &__item {
+    position: absolute;
+    transition: all 1s ease-in-out;
+    transition-timing-function: linear;
+    transition-duration: 0.5s;
+
+    &--active {
+      transform: translateX(5px) scale(1);
+      z-index: 4;
+    }
+
+    &--before {
+      transform: translateX(20%) scale(0.8);
+      opacity: 0;
+    }
+
+    &--after {
+      transform: translateX(-20%) scale(0.8);
+      opacity: 0;
+    }
+
+    &--before-1,
+    &--after-1 {
+      opacity: 0.7;
+      filter: blur(1px) grayscale(10%);
+      z-index: 3;
+    }
+
+    &--before-1 {
+      transform: translateX(-12%) scale(0.9);
+    }
+
+    &--after-1 {
+      transform: translateX(14%) scale(0.9);
+    }
+  }
+}
