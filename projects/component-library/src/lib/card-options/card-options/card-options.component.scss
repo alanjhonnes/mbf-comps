@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+
+.icon {
+  color: #7D7D7D;
+  float: right;
+
+  .material-icons {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .options {
+    background: #FFFFFF;
+    border: 1px solid #F2F2F2;
+    box-sizing: border-box;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    min-height: 50px;
+    min-width: 140px;
+    padding: 0 16px 16px;
+    position: absolute;
+    transform: translateX(calc(-90%));
+    z-index: 999;
+
+    .option {
+      display: block;
+      font-family: Montserrat;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 15px;
+      padding-top: 16px;
+      width: 100%;
+
+      label {
+        color: #000000;
+      }
+
+      span {
+        display: block;
+        background: #E0E0E0;
+        border: 1px solid #E0E0E0;
+        margin-top: 12px;
+      }
+    }
+  }
+}
