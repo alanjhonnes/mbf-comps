@@ -25,9 +25,12 @@ export class CollapsibleItemComponent implements OnInit {
   @Input()
   open = false;
 
-  constructor() {}
+  @Input()
+  icon: string;
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void { }
 
   @HostListener('click')
   onClick(): void {
