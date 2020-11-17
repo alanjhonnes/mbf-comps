@@ -1,6 +1,12 @@
-<div class="icon">
-  <span class="material-icons" #icon>info</span>
-  <div class="tooltip" #tooltip [ngClass]="tooltipPosition" [ngStyle]="{'visibility': show ? 'visible' : 'hidden'}">
-    <ng-content></ng-content>
+<div class="sf-info-button">
+  <div class="sf-info-button__icon" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="this.show = !this.show">
+    <span class="sf-info-button__icon__span material-icons">info</span>
   </div>
+  <ng-template cdkConnectedOverlay cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+    [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="show" [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayPositions]="positions" (backdropClick)="show = false">
+    <div class="sf-info-button__tooltip">
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
 </div>

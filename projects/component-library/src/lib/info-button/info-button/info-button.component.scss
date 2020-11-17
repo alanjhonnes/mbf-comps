@@ -1,17 +1,17 @@
-:host {
+.sf-info-button {
   display: block;
-}
 
-.icon {
-  color: #7D7D7D;
-  float: right;
+  &__icon {
+    color: #7D7D7D;
+    float: right;
 
-  .material-icons {
-    cursor: pointer;
-    user-select: none;
+    &__span {
+      cursor: pointer;
+      user-select: none;
+    }
   }
 
-  .tooltip {
+  &__tooltip {
     background: #FFFFFF;
     border: 1px solid #F2F2F2;
     box-sizing: border-box;
@@ -20,31 +20,5 @@
     min-height: 100px;
     min-width: 140px;
     padding: 16px;
-    position: absolute;
-    z-index: 999;
-
-    &.left {
-      transform: translateX(calc(-90% - 24px)) translateY(calc(-45% - 24px));
-    }
-
-    &.right {
-      transform: translateX(calc(5% + 24px)) translateY(calc(-90% + 24px))
-    }
-
-    &.top.left {
-      transform: translateX(calc(-90% - 24px)) translateY(calc(-45% + 24px));
-    }
-
-    &.top.right {
-      transform: translateX(calc(5% + 24px)) translateY(calc(-45% + 24px));
-    }
-
-    &.bottom.left {
-      transform: translateX(calc(-90% - 24px)) translateY(calc(-90% - 24px));
-    }
-
-    &.bottom.right {
-      transform: translateX(calc(5% + 24px)) translateY(calc(-90% - 24px));
-    }
   }
 }
