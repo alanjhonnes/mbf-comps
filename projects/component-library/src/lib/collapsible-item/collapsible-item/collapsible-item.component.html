@@ -1,10 +1,25 @@
-<div>
-  <p>
-    <ng-container *ngTemplateOutlet="headerTemplate || defaultTemplate; context: { $implicit: header }"></ng-container>
-    <span [ngClass]="{'down-arrow': !open, 'up-arrow': open}"></span>
-  </p>
+<div class="sf-collapsible-item">
+  <div class="sf-collapsible-item__header" [ngClass]="{'sf-collapsible-item__header-icon' : icon}">
+    <ng-container *ngTemplateOutlet="!icon && (headerTemplate || defaultTemplate); context: { $implicit: header }">
+    </ng-container>
+
+    <ng-container *ngTemplateOutlet="icon && iconTemplate;">
+    </ng-container>
+
+    <span class="sf-collapsible-item__header__arrow"
+      [ngClass]="'sf-collapsible-item__header__arrow--'.concat(open ? 'up' : 'down')"></span>
+  </div>
 
   <ng-content *ngIf="open"></ng-content>
 
-  <ng-template #defaultTemplate let-header>{{header}}</ng-template>
+  <ng-template #defaultTemplate>
+    {{header}}
+  </ng-template>
+
+  <ng-template #iconTemplate>
+    <img class="sf-collapsible-item__header-icon__icon" [src]="'assets/' + icon" *ngIf="icon">
+    <div class="sf-collapsible-item__header-icon__text">
+      {{ header }}
+    </div>
+  </ng-template>
 </div>
