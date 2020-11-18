@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/angular';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { CollapsibleItemModule } from '../collapsible-item.module';
 
 storiesOf('CollapsibleItem', module)
@@ -40,4 +40,22 @@ storiesOf('CollapsibleItem', module)
         </ng-template>
       `,
     };
-  });
+  })
+  .add('With icon', () => {
+    return {
+      moduleMetadata: {
+        imports: [CollapsibleItemModule],
+      },
+      props: {
+        icon: select('icon', ['credit-card.svg', 'phone.svg', 'bank.svg'], 'credit-card.svg'),
+      },
+      template: `
+        <sf-collapsible-item 
+          header="Titulo"
+          [icon]="icon"
+          [(open)]="open">
+          Conteudo..
+        </sf-collapsible-item>
+      `,
+    };
+  })
