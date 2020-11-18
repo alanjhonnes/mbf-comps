@@ -28,19 +28,16 @@
     font-size: 10px;
     color: #bbbbbb;
     text-transform: uppercase;
-  }
 
-  &__btn-set:hover {
-    background-color: #2a2a5c;
-  }
+    &--active {
+      background-color: #2a2a5c;
+      border: solid 1px #2a2a5c;
+      border-radius: 4.1px;
+    }
 
-  &__btn-set:active {
-    background-color: #2a2a5c71;
-    border: solid 1px #2a2a5c71;
-  }
-
-  &__btn-set:focus {
-    outline: 0;
-    background-color: #2a2a5c;
+    &:focus {
+      outline: 0;
+      user-select: none;
+    }
   }
 }

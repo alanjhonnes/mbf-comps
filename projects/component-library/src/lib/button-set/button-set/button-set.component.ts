@@ -17,6 +17,8 @@ export class ButtonSetComponent implements OnInit {
 
   @Output() secondBtnClick = new EventEmitter<boolean>();
 
+  public buttonActive: string;
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -24,10 +26,12 @@ export class ButtonSetComponent implements OnInit {
 
   firstOnClick() {
     this.firstBtnClick.emit(true);
+    this.buttonActive = 'first';
   }
 
   secondOnClick() {
     this.secondBtnClick.emit(true);
+    this.buttonActive = 'second';
   }
 
 }

@@ -1,7 +1,11 @@
 <div class="sf-button-set">
     <div class="sf-button-set__content">
-        <button class="sf-button-set__btn-set" (click)="firstOnClick()">{{firstButtonText}}</button>
+        <button class="sf-button-set__btn-set" (click)="firstOnClick()" [ngClass]="{'sf-button-set__btn-set--active': buttonActive == 'first'}">
+            {{firstButtonText}}
+        </button>
         <div class="sf-button-set__btn-border"></div>
-        <button class="sf-button-set__btn-set" (click)="secondOnClick()">{{secondButtonText}}</button>
+        <button class="sf-button-set__btn-set" (click)="secondOnClick()" [ngClass]="{'sf-button-set__btn-set--active': buttonActive == 'second'}">
+            {{secondButtonText}}
+        </button>
     </div>
 </div>
