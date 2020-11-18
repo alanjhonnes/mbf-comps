@@ -1,0 +1,46 @@
+.sf-button-set {
+  background-color: #ffffff;
+  height: 32px;
+  width: 132px;
+  border: solid 1px #bbbbbb;
+  border-radius: 4.1px;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  &__btn-border {
+    border-left: solid 1px #bbbbbb;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__btn-set {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    border: none;
+    font-size: 10px;
+    color: #bbbbbb;
+    text-transform: uppercase;
+  }
+
+  &__btn-set:hover {
+    background-color: #2a2a5c;
+  }
+
+  &__btn-set:active {
+    background-color: #2a2a5c71;
+    border: solid 1px #2a2a5c71;
+  }
+
+  &__btn-set:focus {
+    outline: 0;
+    background-color: #2a2a5c;
+  }
+}
